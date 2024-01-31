@@ -1,0 +1,23 @@
+GET http://localhost:3333/api/todos
+
+###
+
+GET http://localhost:3333/api/todos/1
+
+###
+
+POST http://localhost:3333/api/todos
+Content-Type: application/json
+
+{
+  "title": "New Todo",
+  "description": "New Todo Description"
+}
+
+###
+
+DELETE http://localhost:3333/api/todos/1
+
+###
+
+PATCH http://localhost:3333/api/todos/1/done

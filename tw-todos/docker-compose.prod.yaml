@@ -1,0 +1,36 @@
+services:
+  mysql:
+    image: mysql:8.2.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: twtodos
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - twtodos
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  twtodos:
+    image: cleysonph/tw-todos-gha:latest
+    restart: always
+    ports:
+      - 3333:3333
+    environment:
+      DATABASE_URL: mysql://root:root@mysql:3306/twtodos
+      NODE_ENV: production
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - twtodos
+
+volumes:
+  mysql:
+
+networks:
+  twtodos:

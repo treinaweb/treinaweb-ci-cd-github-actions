@@ -1,0 +1,17 @@
+name: manually
+run-name: Workflow Manual
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Messagem a ser exibida no terminal
+        type: string
+        required: true
+        default: "Olá Mundo"
+
+jobs:
+  echo-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ inputs.message }}

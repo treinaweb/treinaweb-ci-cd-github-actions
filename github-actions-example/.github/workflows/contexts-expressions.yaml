@@ -1,0 +1,19 @@
+name: contexts-expressions
+run-name: Contextos e Expressões
+
+on:
+  - push
+
+jobs:
+  contexts-expressions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo '${{ toJson(github) }}'
+          echo '${{ toJson(job) }}'
+          echo '${{ toJson(secrets) }}'
+          echo '${{ toJson(vars) }}'
+          echo '${{ toJson(steps) }}'
+          echo '${{ toJson(runner) }}'
+
+      - run: echo '${{ github.event.commits[0].author.email }}'

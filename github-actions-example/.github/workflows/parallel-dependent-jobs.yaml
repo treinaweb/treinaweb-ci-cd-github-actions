@@ -1,0 +1,36 @@
+name: parallel-dependent-jobs
+run-name: Jobs paralelos e dependentes
+
+on:
+  - push
+
+jobs:
+  test-application:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run lint
+        run: echo "Run linter"
+
+      - name: Run tests
+        run: echo "Run tests"
+
+  build-for-linux:
+    runs-on: ubuntu-latest
+    needs: test-application
+    steps:
+      - name: Build for linux
+        run: echo "Build"
+
+  build-for-windows:
+    runs-on: windows-latest
+    needs: test-application
+    steps:
+      - name: Build for windows
+        run: Write-Output "Build"
+
+  build-for-macos:
+    runs-on: macos-latest
+    needs: test-application
+    steps:
+      - name: Build for macOS
+        run: echo "Build"

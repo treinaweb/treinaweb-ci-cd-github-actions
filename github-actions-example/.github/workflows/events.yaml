@@ -1,0 +1,18 @@
+name: events
+run-name: Events
+
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "**.js"
+
+jobs:
+  show-ref-and-sha:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo GITHUB_SHA and GITHUB_REF
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REF

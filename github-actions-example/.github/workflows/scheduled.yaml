@@ -1,0 +1,12 @@
+name: scheduled
+run-name: Workflow Agendado
+
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+
+jobs:
+  echo-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Olá"
